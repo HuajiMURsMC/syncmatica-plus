@@ -6,7 +6,8 @@
 	"description": "Server-wide shared litematics.",
 	"authors": [
 		"nnnik",
-		"samipourquoi"
+		"samipourquoi",
+		"Huaji_MUR233"
 	],
 	"contact": {
 		"sources": "https://github.com/endtech/syncmatica"
@@ -24,7 +25,7 @@
 		"litematica": "*",
 		"malilib": "*"
 	},
-	
+
 	"icon": "assets/syncmatica/icon/logo.png",
 	"custom": {
     		"modmenu": {

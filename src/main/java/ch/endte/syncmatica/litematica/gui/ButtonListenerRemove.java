@@ -28,7 +28,6 @@ public class ButtonListenerRemove implements IButtonActionListener {
             messageDisplay.addMessage(Message.MessageType.ERROR, "syncmatica.error.remove_without_shift");
             return;
         }
-        button.setEnabled(false);
         final Context con = LitematicManager.getInstance().getActiveContext();
         final ExchangeTarget server = ((ClientCommunicationManager) con.getCommunicationManager()).getServer();
         final PacketByteBuf packetBuf = new PacketByteBuf(Unpooled.buffer());
