@@ -120,6 +120,13 @@ public class ServerCommunicationManager extends CommunicationManager {
             final UUID placementId = packetBuf.readUuid();
             final ServerPlacement placement = context.getSyncmaticManager().getPlacement(placementId);
             if (placement != null) {
+                final ServerPlayerEntity player = playerMap.get(source);
+                final GameProfile profile = player.getGameProfile();
+                final PlayerIdentifier playerIdentifier = context.getPlayerIdentifierProvider().createOrGet(profile);
+                if (!(placement.getOwner().equals(playerIdentifier) || player.hasPermissionLevel(3))) {
+                    sendMessage(source, MessageType.ERROR, "仅原理图所有者与服务器管理员可删除共享原理图");
+                    return;
+                }
                 final Exchange modifier = getModifier(placement);
                 if (modifier != null) {
                     modifier.close(true);

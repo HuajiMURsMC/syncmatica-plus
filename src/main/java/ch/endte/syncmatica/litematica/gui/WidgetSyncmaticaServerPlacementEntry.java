@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
+import fi.dy.masa.malilib.gui.GuiBase;
 import org.apache.logging.log4j.LogManager;
 
 import ch.endte.syncmatica.Context;
@@ -30,7 +31,7 @@ public class WidgetSyncmaticaServerPlacementEntry extends WidgetListEntryBase<Se
     private final boolean isOdd;
 
     public WidgetSyncmaticaServerPlacementEntry(final int x, int y, final int width, final int height, final ServerPlacement entry,
-                                                final int listIndex) {
+                                                final int listIndex, final GuiBase messageDisplay) {
         super(x, y, width, height, entry, listIndex);
         placement = entry;
         isOdd = (listIndex % 2 == 1);
@@ -44,8 +45,8 @@ public class WidgetSyncmaticaServerPlacementEntry extends WidgetListEntryBase<Se
         text = StringUtils.translate("syncmatica.gui.button.remove");
         len = getStringWidth(text) + 10;
         posX -= (len + 2);
-        listener = new ButtonListener(ButtonListener.Type.REMOVE, this);
-        addButton(new ButtonGeneric(posX, y, len, 20, text), listener);
+        ButtonListenerRemove listenerRemove = new ButtonListenerRemove(this.placement, messageDisplay);
+        addButton(new ButtonGeneric(posX, y, len, 20, text), listenerRemove);
 
         text = StringUtils.translate("syncmatica.gui.button.material_gathering_placement");
         len = getStringWidth(text) + 10;
